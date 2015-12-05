@@ -1,0 +1,13 @@
+package com.mycompany.app;
+
+public class RadiusFormatException extends java.lang.NumberFormatException {
+
+    public RadiusFormatException(){}
+
+    public RadiusFormatException(String message){super(message);}
+
+    public RadiusFormatException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace){
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
+
+}

@@ -3,49 +3,53 @@ package com.mycompany.app;
 import java.lang.Math;
 import java.text.DecimalFormat;
 
+/**
+* Paraméterek (sugár, kerület) kiszámításáért felelős osztály
+*/
 public class ParCalc{
 
-private static double radius = 0;
-public static boolean isNumb = false;
-public ParCalc(){
+    private static Double radius = null;
+    public static Double getRadius(){return radius;}
 
-	//while(!isNumb){
-	//	System.out.print("Enter the radius of your circle: ");
-	//	String input = System.console().readLine();
-	//	System.out.println(isNumber(input));
-	//	if(isNumb){System.out.println(params(radius));}
-	//	System.out.println("%%%%%%%%%%");
-	//}
+    private static Double area = null;
+    /**
+    /* Terület kiszámítását végző függvény, az eredményt belső változóban tárolja
+    /* @param void
+    /* @return void
+    */
+    public static Double getArea(){
+        if (area == null){area = Math.PI * Math.pow(radius,2);}
+        return area;
+    }
 
-}
+    private static Double girth = null;
+    /**
+    /* Kerület kiszámítását végző függvény, az eredményt belső változóban tárolja
+    /* @param void
+    /* @return void
+    */
+    public static Double getGirth(){
+        if (girth == null){girth = 2 * radius * Math.PI;}
+        return girth;
+    }
 
-public static String isNumber(String input){
-	String out;
-	try{
-	if(input.equals("NaN")||input.equals("Infinity")||input.equals("-Infinity")){input = "bla";}
-	radius = Double.parseDouble(input);
-	isNumb = true;
-	out = "The given radius: " + input;
-	} catch (Exception e){
-            if(input==null){out="";} else {out = "The given input is not a number! Try again"; isNumb=false;}
-        }
-	return out;
-}
+    /**
+    * Osztály konstruktora
+    */
+    public ParCalc(){}
 
-public static String params(){
-	String out;
-	DecimalFormat formatter = new DecimalFormat("#0.00");
-	double girth = 0;
-	double area = 0;
-        if (isNumb){
-	    if (radius > 0){
-		area = Math.PI * Math.pow(radius,2);
-		girth = 2 * radius * Math.PI;
-		out = "The area of the circle: " + String.valueOf(formatter.format(area)) + "\n";
-		out = out + "The girth of the circle: " + String.valueOf(formatter.format(girth));
-	    } else {out = "The given number must be higher than 0! Try again!"; isNumb = false;}
-        } else {out = "";}
-	return out;
-}
+    /**
+    /* Az inputot ellenőrzi, hogy potenciálisan sugár-e
+    /* @param input String
+    /* @return void
+    */
+    public static void parseRadius(String input) throws RadiusFormatException{
+        radius = Double.parseDouble(input);
+        // cache törlése
+        area = null; girth = null;
+        if (radius.isNaN()){radius = null; throw new RadiusFormatException();}
+        else if (radius.isInfinite()){radius = null; throw new RadiusFormatException();}
+        else if (radius <= 0){radius = null; throw new RadiusFormatException();}
+    }
 
 }

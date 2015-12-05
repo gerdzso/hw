@@ -40,9 +40,9 @@ public class AppTest
 	Assert.assertEquals(ParCalc.isNumber("-Infinity"), "The given input is not a number! Try again");
     }
 
-    public void testApp2(){
-	Assert.assertEquals(ParCalc.params(1.0), "The area of the circle: 3.14" + "\n" + "The girth of the circle: 6.28");
-	Assert.assertEquals(ParCalc.params(0), "The given number must be higher than 0! Try again!");
-	Assert.assertEquals(ParCalc.params(-1.2), "The given number must be higher than 0! Try again!");
-    }
+//    public void testApp2(){
+//	Assert.assertEquals(ParCalc.params(1.0), "The area of the circle: 3.14" + "\n" + "The girth of the circle: 6.28");
+//	Assert.assertEquals(ParCalc.params(0), "The given number must be higher than 0! Try again!");
+//	Assert.assertEquals(ParCalc.params(-1.2), "The given number must be higher than 0! Try again!");
+//    }
 }
